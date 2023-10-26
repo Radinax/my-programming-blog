@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --astro-code-color-text: theme(colors.pine-dawn.text);
+  --astro-code-color-background: theme(colors.pine-dawn.base);
+  --astro-code-token-constant: theme(colors.pine-dawn.text);
+  --astro-code-token-string: theme(colors.pine-dawn.iris);
+  --astro-code-token-comment: theme(colors.pine-dawn.muted);
+  --astro-code-token-keyword: theme(colors.pine-dawn.pine);
+  --astro-code-token-parameter: theme(colors.pine-dawn.text);
+  --astro-code-token-function: theme(colors.pine-dawn.rose);
+  --astro-code-token-string-expression: theme(colors.pine-dawn.love);
+  --astro-code-token-punctuation: theme(colors.pine-dawn.text);
+  --astro-code-token-link: theme(colors.pine-dawn.foam);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --astro-code-color-text: theme(colors.pine.text);
+    --astro-code-color-background: theme(colors.pine.base);
+    --astro-code-token-constant: theme(colors.pine.text);
+    --astro-code-token-string: theme(colors.pine.iris);
+    --astro-code-token-comment: theme(colors.pine.muted);
+    --astro-code-token-keyword: theme(colors.pine.pine);
+    --astro-code-token-parameter: theme(colors.pine.text);
+    --astro-code-token-function: theme(colors.pine.rose);
+    --astro-code-token-string-expression: theme(colors.pine.love);
+    --astro-code-token-punctuation: theme(colors.pine.text);
+    --astro-code-token-link: theme(colors.pine.foam);
+  }
+}
