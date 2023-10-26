@@ -62,6 +62,21 @@ export default {
           highlightHigh: "#cecacd",
         },
       },
+      typography: ({ theme }) => ({
+        pine: {
+          css: {
+            "--tw-prose-body": theme("colors.pine-dawn.text"),
+            "--tw-prose-headings": theme("colors.pine-dawn.text"),
+            "--tw-prose-links": theme("colors.pine-dawn.pine"),
+            "--tw-prose-code": theme("colors.pine-dawn.love"),
+
+            "--tw-prose-invert-body": theme("colors.pine.text"),
+            "--tw-prose-invert-headings": theme("colors.pine.text"),
+            "--tw-prose-invert-links": theme("colors.pine.pine"),
+            "--tw-prose-invert-code": theme("colors.pine.love"),
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],
