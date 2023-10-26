@@ -80,7 +80,7 @@ Now, you might be thinking, "But now I have to return objects with an `ok` key e
 const Ok = <T>(value: T): Ok<T> => ({ ok: true, value });
 const Err = <E>(error: E): Err<E> => ({ ok: false, error });
 
-const isOk = <T, E>(result: Result<T, E>): reuslt is Ok<T> => result.ok;
+const isOk = <T, E>(result: Result<T, E>): result is Ok<T> => result.ok;
 const isErr = <T, E>(result: Result<T, E>): result is Err<E> => !result.ok;
 ```
 
