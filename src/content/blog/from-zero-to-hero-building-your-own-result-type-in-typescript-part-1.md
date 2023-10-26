@@ -1,5 +1,5 @@
 ---
-title: 'From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure'
+title: 'From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure - Part 1'
 description: "In this blog post, we'll explore the creation of a custom Result type in TypeScript, drawing inspiration from Rust's error-handling approach. Learn how to elegantly manage errors and successes in your code, enhancing the reliability of your TypeScript projects while following a Rust-inspired path."
 category: typescript
 pubDate: '2023-10-26'
@@ -108,4 +108,4 @@ This refactoring not only makes your code cleaner but also introduces explicit f
 
 As we conclude this transformative journey into the world of Rust-inspired error handling in TypeScript, you've taken the first steps towards writing more robust, reliable, and comprehensible code. By implementing the Result type and its accompanying utilities, you've paved the way for error management that's both elegant and precise.
 
-But our adventure doesn't end here. In the next blog entry, we'll continue our exploration, creating even more utility functions to further enhance the utility and expressiveness of our error-handling mechanism. Join me as we delve deeper into this exciting world, unlocking new tools and strategies to take your TypeScript development to the next level. Together, we'll continue to make coding a more enjoyable and error-resistant experience. Stay tuned for the next chapter in our journey!
+But our adventure doesn't end here. In the next blog entry, we'll continue our exploration, creating even more utility functions to further enhance the utility and expressiveness of our error-handling mechanism. Join me as we delve deeper into this exciting world, unlocking new tools and strategies to take your TypeScript development to the next level. Together, we'll continue to make coding a more enjoyable and error-resistant experience. Stay tuned for the [next chapter](/blog/from-zero-to-hero-building-your-own-result-type-in-typescript-part-2) in our journey!
