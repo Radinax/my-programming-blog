@@ -4,7 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const posts = await getCollection('blog', ({ data }) => data.published)
-const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+const sortedPosts = [...posts].sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
 
 function getDateTime(date: Date){ 
   const year = date.getFullYear()
