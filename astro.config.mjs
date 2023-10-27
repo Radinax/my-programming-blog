@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://hitokiri.dev",
   markdown: { shikiConfig: { theme: "css-variables" } },
   integrations: [mdx({ syntaxHighlight: "shiki" }), sitemap(), tailwind()],
 });
