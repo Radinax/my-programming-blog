@@ -38,7 +38,7 @@ The `map` function is designed to work seamlessly with `Result` types. It takes 
 const map = <T, E, U>(
   result: Result<T, E>, 
   f: (value: T) => U
-): Result<U, E> => match(result, value => ok(f(value)), error => Err(error));
+): Result<U, E> => match(result, value => Ok(f(value)), error => Err(error));
 ```
 
 ## Example Usage:
