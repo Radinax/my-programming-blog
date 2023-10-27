@@ -59,7 +59,6 @@ By implementing a Result type inspired by Rust, you're not just handling errors;
 Let's delve even deeper into this newfound paradigm and see how it translates into actual code:
 
 ```ts
-
 const result = whatever();
 
 if (result.ok) {
@@ -76,7 +75,6 @@ The magic here lies in TypeScript's ability to understand the shared field `ok` 
 Now, you might be thinking, "But now I have to return objects with an `ok` key everywhere!" You're absolutely correct, and that's where our utilities come into play to enhance your developer experience:
 
 ```ts
-
 const Ok = <T>(value: T): Ok<T> => ({ ok: true, value });
 const Err = <E>(error: E): Err<E> => ({ ok: false, error });
 
