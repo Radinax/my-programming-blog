@@ -1,14 +1,20 @@
 ---
-title: 'From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure - Part 1'
+title: "From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure - Part 1"
 description: "In this blog post, we'll explore the creation of a custom Result type in TypeScript, drawing inspiration from Rust's error-handling approach. Learn how to elegantly manage errors and successes in your code, enhancing the reliability of your TypeScript projects while following a Rust-inspired path."
-category: typescript
-pubDate: '2023-10-26'
+category: ["web3"]
+pubDate: "2023-10-26"
 published: true
 ---
+
+## Intro
 
 JavaScript, with its error-handling methods like throwing and try/catch blocks, often lacks an elegant and robust way to manage errors. If these conventional approaches don't quite align with your preferences, then you're not alone. However, Rust, with its Result enum, offers a clean and definitive way to handle errors. In Rust, everything boils down to two distinct states: success or failure. This clarity in handling errors is not just satisfying; it's a safer, more disciplined way to write code.
 
 In this journey, we'll explore implementing a similar error-handling mechanism in TypeScript. But we won't stop at just mimicking Rust; we'll take a more functional approach and provide you with a set of utilities that make working with these types a breeze.
+
+## Table of contents
+
+## Content
 
 Our first step is to model the possible states in TypeScript, setting the foundation for our error-handling adventure:
 
@@ -32,7 +38,7 @@ Continuing our exploration, it's essential to recognize that obscure errors are 
 function whatever(): number {
   const n = Math.random();
   if (n > 0.5) {
-    throw new Error('Something went really wrong here');
+    throw new Error("Something went really wrong here");
   }
   return n;
 }
@@ -46,7 +52,7 @@ Now, let's introduce a Result-based approach:
 function whatever(): Result<number, string> {
   const n = Math.random();
   if (n > 0.5) {
-    return { ok: false, error: 'Something went really wrong here' };
+    return { ok: false, error: "Something went really wrong here" };
   }
   return { ok: true, value: n };
 }
@@ -88,7 +94,7 @@ With these utilities, you can refactor your whatever function:
 function whatever(): Result<number, string> {
   const n = Math.random();
   if (n > 0.5) {
-    return Err('Something went really wrong here');
+    return Err("Something went really wrong here");
   }
   return Ok(n);
 }

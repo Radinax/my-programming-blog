@@ -1,8 +1,8 @@
 ---
-title: 'From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure - Part 2'
+title: "From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure - Part 2"
 description: "Dive deeper into the world of Rust-inspired error handling in TypeScript. Building on the foundations laid in our previous post, we'll explore additional utility functions that take your error management to the next level. Join us on this coding journey as we continue to refine your TypeScript skills and make error handling a more elegant, robust, and enjoyable part of your development process."
-category: typescript
-pubDate: '2023-10-27'
+category: ["typescript", "web3"]
+pubDate: "2023-10-27"
 published: true
 ---
 
@@ -14,10 +14,10 @@ In the Rust programming language, `match` is a formidable construct, akin to a `
 
 ```ts
 const match = <T, E, U>(
-  result: Result<T, E>, 
-  onOk: (value: T) => U, 
+  result: Result<T, E>,
+  onOk: (value: T) => U,
   onErr: (error: E) => U
-): U => result.ok ? onOk(result.value) : onErr(result.error);
+): U => (result.ok ? onOk(result.value) : onErr(result.error));
 ```
 
 `Match` is a cornerstone utility that will pave the way for several other functions we're about to introduce. It operates on a simple principle: given a `Result` and two functions, it executes and returns the `onOk` callback if the `Result` is an `Ok`, and likewise, it executes and returns the `onErr` callback if the `Result` is an `Err`. It's a straightforward yet powerful construct, enabling precise handling of success and error cases. Let's put it to use.
@@ -25,7 +25,11 @@ const match = <T, E, U>(
 ```ts
 const result = whatever();
 
-const number = match(result, (v) => v * 2, (err) => 0);
+const number = match(
+  result,
+  (v) => v * 2,
+  (err) => 0
+);
 ```
 
 In this example, when `result` contains an `Ok` value, we return the value multiplied by two. If it happens to be an `Err`, we gracefully return zero. With `match`, we've unlocked a world of flexibility and accuracy in handling `Result` types, setting the stage for even more powerful utility functions in our TypeScript journey.
@@ -35,10 +39,12 @@ In this example, when `result` contains an `Ok` value, we return the value multi
 The `map` function is designed to work seamlessly with `Result` types. It takes a `Result` and a transformation function and applies the function if and only if the `Result` is `Ok.` The result of this operation is then wrapped in another `Result` and returned. If the `Result` is an `Err`, it remains unaltered.
 
 ```ts
-const map = <T, E, U>(
-  result: Result<T, E>, 
-  f: (value: T) => U
-): Result<U, E> => match(result, value => Ok(f(value)), error => Err(error));
+const map = <T, E, U>(result: Result<T, E>, f: (value: T) => U): Result<U, E> =>
+  match(
+    result,
+    (value) => Ok(f(value)),
+    (error) => Err(error)
+  );
 ```
 
 ## Example Usage:
@@ -71,7 +77,7 @@ const mapOr = <T, E, U>(
 const result1 = Ok(2);
 const result2 = mapOr(result1, 0, (value) => value * 2); // result2: 4
 
-const result3 = Err('Oh no');
+const result3 = Err("Oh no");
 const result4 = mapOr(result3, 42, (value) => value * 2); // result4: 42
 ```
 
@@ -91,10 +97,18 @@ const mapOrElse = <T, E, U>(
 
 ```ts
 const result1 = Ok(2);
-const result2 = mapOrElse(result1, (error) => `Error: ${error}`, (value) => `Value: ${value}`); // result2: 'Value: 2'
+const result2 = mapOrElse(
+  result1,
+  (error) => `Error: ${error}`,
+  (value) => `Value: ${value}`
+); // result2: 'Value: 2'
 
-const result3 = Err('Oh no');
-const result4 = mapOrElse(result3, (error) => `Error: ${error}`, (value) => `Value: ${value}`); // result4: 'Error: Oh no'
+const result3 = Err("Oh no");
+const result4 = mapOrElse(
+  result3,
+  (error) => `Error: ${error}`,
+  (value) => `Value: ${value}`
+); // result4: 'Error: Oh no'
 ```
 
 ## 'mapErr': Precise Error Transformation
@@ -105,7 +119,12 @@ The `mapErr` function is tailored for error transformation in `Result` types. It
 const mapErr = <T, E, F>(
   result: Result<T, E>,
   f: (error: E) => F
-): Result<T, F> => match(result, (value) => Ok(value), (error) => Err(f(error)));
+): Result<T, F> =>
+  match(
+    result,
+    (value) => Ok(value),
+    (error) => Err(f(error))
+  );
 ```
 
 ### Usage Example:
@@ -114,7 +133,7 @@ const mapErr = <T, E, F>(
 const result1 = Ok(2);
 const result2 = mapErr(result1, (error) => `Error: ${error}`); // result2: Ok<2>
 
-const result3 = Err('Oh no');
+const result3 = Err("Oh no");
 const result4 = mapErr(result3, (error) => `Error: ${error}`); // result4: Err<'Error: Oh no'>
 ```
 
