@@ -6,17 +6,17 @@
   * This are the colors for the code snippets
 */
 :root {
-  --astro-code-color-text: theme(colors.gray-nurse.950);
-  --astro-code-color-background: theme(colors.gray-nurse.50);
-  --astro-code-token-constant: theme(colors.purple.500);
-  --astro-code-token-string: theme(colors.light.text);
-  --astro-code-token-comment: theme(colors.light.text);
-  --astro-code-token-keyword: theme(colors.light.text);
-  --astro-code-token-parameter: theme(colors.light.text);
-  --astro-code-token-function: theme(colors.light.text);
-  --astro-code-token-string-expression: theme(colors.light.text);
-  --astro-code-token-punctuation: theme(colors.light.text);
-  --astro-code-token-link: theme(colors.light.text);
+  --astro-code-color-text: theme(colors.blue.200);
+  --astro-code-color-background: theme(colors.light.primary);
+  --astro-code-token-constant: theme(colors.blue.100);
+  --astro-code-token-string: theme(colors.orange.500);
+  --astro-code-token-comment: theme(colors.green.600);
+  --astro-code-token-keyword: theme(colors.blue.400);
+  --astro-code-token-parameter: theme(colors.yellow.600);
+  --astro-code-token-function: theme(colors.purple.400);
+  --astro-code-token-string-expression: theme(colors.orange.400);
+  --astro-code-token-punctuation: theme(colors.blue.200);
+  --astro-code-token-link: theme(colors.blue.200);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,7 +35,40 @@
   }
 }
 
-@font-face {
-  font-family: geist;
-  src: url("/fonts/Geist/._Geist-Regular.otf") format("opentype");
+/* Works on Firefox */
+.scroller {
+  scrollbar-width: thin;
+  scrollbar-color: #7c7c7c #bebebe;
+}
+
+/* width */
+.scroller::-webkit-scrollbar {
+  height: 0.5rem /* 8px */;
+  width: 0.5rem /* 8px */;
+}
+
+/* Track */
+.scroller::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+/* Handle */
+.scroller::-webkit-scrollbar-thumb {
+  background: #bebebe;
+  border-radius: 20px;
+}
+
+/* Corner */
+.scroller::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+/* Handle on hover */
+.scroller::-webkit-scrollbar-thumb:hover {
+  background: #7c7c7c;
+}
+
+/* Handle horizontal */
+.scroller::-webkit-scrollbar-thumb:horizontal {
+  width: 0.5rem /* 8px */;
 }

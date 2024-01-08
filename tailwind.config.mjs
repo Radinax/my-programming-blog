@@ -6,31 +6,30 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["geist", ...defaultTheme.fontFamily.sans],
+        sans: [...defaultTheme.fontFamily.sans],
         mono: ["Source Code Pro Variable", ...defaultTheme.fontFamily.mono],
-        geist: ["geist"],
       },
       backgroundImage: {
         // from gray-nurse-50 to white
         primary: "linear-gradient(360deg, #f6f7f6, #ffffff)",
       },
       colors: {
-        "gray-nurse": {
-          50: "#f6f7f6",
-          100: "#d8dfd9",
-          200: "#c2cdc4",
-          300: "#9caca0",
-          400: "#778a7c",
-          500: "#5d6f61",
-          600: "#49584d",
-          700: "#3d4841",
-          800: "#333c35",
-          900: "#2d342e",
-          950: "#171c19",
+        black: {
+          50: "#f6f6f6",
+          100: "#e7e7e7",
+          200: "#d1d1d1",
+          300: "#b0b0b0",
+          400: "#888888",
+          500: "#6d6d6d",
+          600: "#5d5d5d",
+          700: "#4f4f4f",
+          800: "#454545",
+          900: "#3d3d3d",
+          950: "#1c1c1c",
         },
         light: {
           // gray-nurse-800
-          primary: "#043943",
+          primary: "#1c1c1c",
           secondary: "#007ebd",
           accent: "#f8860d",
           neutral: "#1f2937",
