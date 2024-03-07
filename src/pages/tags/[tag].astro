@@ -1,6 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { CATEGORIES } from "../../content/config";
 import Article from "../../components/Article.astro";
@@ -26,7 +25,7 @@ const { posts } = Astro.props;
 <BaseLayout title={`${SITE_TITLE} | ${tag}`}>
   <div>
     {
-      posts.map((post) => (
+      posts.map((post: (typeof posts)[0]) => (
         <Article
           slug={post.slug}
           title={post.data.title}

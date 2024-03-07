@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Tag from "../components/Tag.astro";
 import Article from "../components/Article.astro";
 
 const posts = await getCollection("blog", ({ data }) => data.published);
@@ -10,12 +9,14 @@ const sortedPosts = [...posts].sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+/*
 function getDateTime(date: Date) {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const day = date.getDate().toString().padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+*/
 ---
 
 <BaseLayout title={`${SITE_TITLE} | Home`} description={SITE_DESCRIPTION} '>
