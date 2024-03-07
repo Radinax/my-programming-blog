@@ -1,17 +1,36 @@
 import { defineCollection, z } from "astro:content";
 
-const CATEGORIES = [
+export const CATEGORIES = [
   "typescript",
   "react",
+  "redux",
+  "remix",
+  "nextjs",
+  "tanstack",
   "frontend",
+  "bootstrap",
+  "review",
   "backend",
   "sql",
+  "postgresql",
+  "sqlite",
+  "test",
+  "jest",
+  "end-to-end",
+  "graphql",
+  "prisma",
+  "node",
+  "express",
+  "mongodb",
   "nosql",
   "svelte",
   "astro",
   "solidjs",
   "web3",
   "concept",
+  "cypress",
+  "sequelize",
+  "tailwind",
 ] as const;
 
 const blog = defineCollection({

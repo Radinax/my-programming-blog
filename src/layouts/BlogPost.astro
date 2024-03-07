@@ -1,11 +1,14 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import { SITE_TITLE } from "../consts";
+import BaseLayout from "./BaseLayout.astro";
 
-const { title, description, } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
-  <article class="prose prose-img:rounded-lg dark:prose-invert max-w-none prose-code:text-lg prose-pine text-xl text-gray-800 scroller">
+<BaseLayout title={`${SITE_TITLE} | ${title}`} description={description}>
+  <article
+    class="prose prose-img:rounded-lg dark:prose-invert max-w-none prose-code:text-lg prose-pine text-xl text-gray-800 scroller"
+  >
     <h1 class="text-light-primary dark:text-dark-primary">{title}</h1>
     <slot />
   </article>

@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"a">;
+
+const { href, ...props } = Astro.props;
+---
+
+<a
+  href={href}
+  class="relative z-10 rounded-full dark:bg-dark-primary bg-light-primary text-dark-text px-3 py-1.5 font-medium hover:opacity-80"
+  {...props}
+>
+  <slot />
+</a>

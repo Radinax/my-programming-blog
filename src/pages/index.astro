@@ -1,55 +1,35 @@
 ---
-import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Tag from "../components/Tag.astro";
+import Article from "../components/Article.astro";
 
-const posts = await getCollection('blog', ({ data }) => data.published)
-const sortedPosts = [...posts].sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+const posts = await getCollection("blog", ({ data }) => data.published);
+const sortedPosts = [...posts].sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
 
-function getDateTime(date: Date){ 
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const day = date.getDate().toString().padStart(2, '0')
-  return `${year}-${month}-${day}`
+function getDateTime(date: Date) {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}'>
+<BaseLayout title={`${SITE_TITLE} | Home`} description={SITE_DESCRIPTION} '>
   <div class="flex flex-col gap-12">
-    {sortedPosts.map(post => 
-      <article class="flex max-w-xl flex-col items-start justify-between">
-        {/* Article Header */}
-        <div class="group relative">
-          <h1 class="mt-3 text-xl font-semibold leading-6 text-pine-dawn-text group-hover:opacity-90 dark:text-pine-text">
-            <a href={`/blog/${post.slug}`}>
-              <span class="absolute inset-0" />
-              {post.data.title}
-            </a>
-          </h1>
-          
-        </div>
-        {/* Article Body */}
-        <div class="flex items-center gap-x-4 text-xs mt-1">
-          {/* Article Header Date */}
-          <time datetime={getDateTime(post.data.pubDate)} class="text-light-primary dark:text-dark-primary">
-            {post.data.pubDate.toLocaleString('en', {
-              dateStyle: 'long',
-              })}
-          </time>
-          {/* Article Header Tags */}
-          <div class="flex gap-2 flex-wrap">
-            {post.data.category.map(c => 
-              <a
-            href="#"
-            class="relative z-10 rounded-full dark:bg-dark-primary bg-light-primary text-dark-text px-3 py-1.5 font-medium hover:opacity-80"
-          >
-            {c}
-          </a>)}
-          </div>
-        </div>
-        {/* Description */}
-        <p class="mt-2 text-lg line-clamp-3 leading-6 text-light-primary dark:text-dark-primary">{post.data.description}</p>
-      </article>
-    )}
+    {
+      sortedPosts.map((post) => (
+        <Article
+          slug={post.slug}
+          title={post.data.title}
+          dateTime={post.data.pubDate}
+          categories={post.data.category}
+          description={post.data.description}
+        />
+      ))
+    }
   </div>
 </BaseLayout>

@@ -1,7 +1,7 @@
 ---
 title: "Introduction to React"
 description: "This post is to explain what is React"
-category: ["react"]
+category: ["react", "frontend"]
 pubDate: "2023-10-30"
 published: true
 ---

@@ -1,8 +1,8 @@
 ---
 title: "From Zero to Hero: Building Your Own Result Type in TypeScript – A Rust-Inspired Adventure - Part 2"
 description: "Dive deeper into the world of Rust-inspired error handling in TypeScript. Building on the foundations laid in our previous post, we'll explore additional utility functions that take your error management to the next level. Join us on this coding journey as we continue to refine your TypeScript skills and make error handling a more elegant, robust, and enjoyable part of your development process."
-category: ["typescript", "web3"]
-pubDate: "2023-10-27"
+category: ["typescript"]
+pubDate: "2024-01-25"
 published: true
 ---
 
@@ -144,3 +144,9 @@ As we wrap up this second installment of our exploration into Rust-inspired erro
 But our journey doesn't end here. In our next blog post, we're about to embark on a thrilling adventure where we'll unveil an array of additional utility functions, each designed to address specific aspects of error management. From `mapErr` for error transformation to other ingenious tools, we'll continue to refine our error-handling practices in TypeScript.
 
 Join us in the next installment as we expand our coding horizons, ensuring that error management in your TypeScript projects becomes even more efficient and enjoyable. Stay tuned for the third chapter in our journey!
+
+See you on the next post.
+
+Sincerely,
+
+**End. Adrian Beria**
