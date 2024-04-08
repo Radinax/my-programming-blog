@@ -37,12 +37,11 @@ In this post we're gonna go over a roadmap of this runtime environment that will
 - Callbacks and Asynchronous Programming
 - Streams and Buffers
 
-**4. Core Modules**
+**5. Core Modules**
 
 - fs (File System)
 - http and https (HTTP Modules)
 - events (Event Emitter)
-- util (Utilities)
 - os (Operating System)
 - path (Path Module)
 
@@ -163,4 +162,4 @@ See you on the next post.
 
 Sincerely,
 
-**End. Adrian Beria**
+**Eng. Adrian Beria**
