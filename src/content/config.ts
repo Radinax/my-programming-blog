@@ -31,6 +31,7 @@ export const CATEGORIES = [
   "cypress",
   "sequelize",
   "tailwind",
+  "utilities",
 ] as const;
 
 const blog = defineCollection({

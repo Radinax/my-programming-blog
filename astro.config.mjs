@@ -8,7 +8,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://hitokiri.dev",
+  site: "https://adrian-beria-blog.netlify.app/",
   markdown: {
     remarkPlugins: [
       remarkToc,

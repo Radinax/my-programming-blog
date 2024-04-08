@@ -3,7 +3,7 @@ title: "From Zero to Hero: Building Your Own Result Type in TypeScript – A Rus
 description: "In this blog post, we'll explore the creation of a custom Result type in TypeScript, drawing inspiration from Rust's error-handling approach. Learn how to elegantly manage errors and successes in your code, enhancing the reliability of your TypeScript projects while following a Rust-inspired path."
 category: ["typescript"]
 pubDate: "2024-01-20"
-published: true
+published: false
 ---
 
 ## Intro

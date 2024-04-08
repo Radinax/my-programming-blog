@@ -3,7 +3,7 @@ title: "From Zero to Hero: Building Your Own Result Type in TypeScript – A Rus
 description: "Dive deeper into the world of Rust-inspired error handling in TypeScript. Building on the foundations laid in our previous post, we'll explore additional utility functions that take your error management to the next level. Join us on this coding journey as we continue to refine your TypeScript skills and make error handling a more elegant, robust, and enjoyable part of your development process."
 category: ["typescript"]
 pubDate: "2024-01-25"
-published: true
+published: false
 ---
 
 Let's forge ahead, expanding our arsenal of utility functions for more effective work with Result types. We're on a mission to implement a subset of Rust's Result enum, enhancing our error-handling capabilities.
