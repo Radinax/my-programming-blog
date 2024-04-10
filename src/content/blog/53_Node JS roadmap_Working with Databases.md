@@ -90,11 +90,11 @@ Node.js provides a powerful platform for building web applications, and interact
 
 Node.js itself doesn't have built-in database access. You'll need to use a database driver specific to your chosen database type. Here are popular options:
 
-    * **MongoDB:**
-        * **Mongoose (ODM - Object Document Mapper):** Provides a layer of abstraction over the native MongoDB driver, allowing you to interact with data using JavaScript objects.
-        * **Native MongoDB Driver:** Offers a lower-level API for direct interaction with MongoDB.
-    * **MySQL:**
-        * **mysql` or `mysql2`:** Popular drivers for interacting with MySQL databases.
+- **MongoDB:**
+  - **Mongoose (ODM - Object Document Mapper):** Provides a layer of abstraction over the native MongoDB driver, allowing you to interact with data using JavaScript objects.
+  - **Native MongoDB Driver:** Offers a lower-level API for direct interaction with MongoDB.
+- **MySQL:**
+  - **mysql`or`mysql2`:** Popular drivers for interacting with MySQL databases.
 
 **3. Installation:**
 
@@ -193,8 +193,6 @@ connection
 - **Connection Pooling:** Consider using connection pooling for performance optimization, especially in production environments, to avoid the overhead of creating new connections frequently.
 
 **Remember:** These are basic examples. Real-world applications will likely involve more complex queries, data manipulation, and error handling practices.
-
-By following these steps and best practices, you can effectively connect to and interact with MongoDB and MySQL databases from your Node
 
 # Mongoose (for MongoDB)
 
@@ -482,12 +480,12 @@ module.exports = {
 Create a `user.js` file to define your User model:
 
 ```javascript
-const Sequelize = require("sequelize");
+const DataTypes = require("sequelize");
 const sequelize = require("../config").development; // Replace with your environment
 
 const User = sequelize.define("User", {
-  name: Sequelize.STRING,
-  email: Sequelize.STRING,
+  name: DataTypes.STRING,
+  email: DataTypes.STRING,
 });
 
 module.exports = User;
@@ -498,17 +496,17 @@ module.exports = User;
 Create a migration file named `20240409-add-user-email.js` (following a date-based naming convention):
 
 ```javascript
-const Sequelize = require("sequelize");
+const DataTypes = require("sequelize");
 const sequelize = require("../config").development; // Replace with your environment
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface, DataTypes) => {
     await queryInterface.addColumn("Users", "email", {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     });
   },
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface, DataTypes) => {
     await queryInterface.removeColumn("Users", "email");
   },
 };

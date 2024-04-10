@@ -317,7 +317,7 @@ app.listen(3000, () => console.log("Server listening on port 3000"));
 
 # RESTful APIs
 
-Absolutely! RESTful APIs (or Representational State Transfer APIs) built with Express.js adhere to a set of architectural principles that promote clean and scalable interactions between web applications. Here's a breakdown of how RESTful APIs work with Express.js:
+RESTful APIs (or Representational State Transfer APIs) built with Express.js adhere to a set of architectural principles that promote clean and scalable interactions between web applications. Here's a breakdown of how RESTful APIs work with Express.js:
 
 **RESTful API Concepts:**
 
