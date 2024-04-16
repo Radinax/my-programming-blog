@@ -1,41 +1,68 @@
 ---
-import { SITE_WELCOME, SITE_INTRODUCTION, GITHUB_LINK, TWITTER_LINK, LINKED_LINK } from '../consts';
-import ProfileImage from "../../public/profile-image.jpg"
-import { Icon } from 'astro-icon'
+import {
+  SITE_WELCOME,
+  SITE_INTRODUCTION,
+  GITHUB_LINK,
+  TWITTER_LINK,
+  LINKED_LINK,
+} from "../consts";
+import ProfileImage from "../../public/profile-image.jpg";
+import { Icon } from "astro-icon";
 
 const url = Astro.url.pathname;
 ---
 
-<header class="bg-black-950"> 
+<header class="bg-black-950">
   {/* NAVBAR */}
-  <nav class="flex items-center justify-between w-full flex-wrap p-6 md:flex mx-auto max-w-4xl min-h-full">
-    <div class="flex items-center flex-shrink-0 text-black-100 mr-6 hover:text-white hover:cursor-pointer">
-      <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4">
+  <nav
+    class="flex items-center justify-between w-full flex-wrap p-6 mx-auto max-w-4xl min-h-full"
+  >
+    <div
+      class="flex items-center flex-shrink-0 text-black-100 mr-6 hover:text-white hover:cursor-pointer"
+    >
+      <a
+        href="/"
+        class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4"
+      >
         <Icon class="h-8 w-8 mr-2" pack="mdi" name="home" />
       </a>
     </div>
-    <div class="flex justify-end w-full flex-grow lg:flex lg:items-center lg:w-auto">
-      <a href={TWITTER_LINK} class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4">
+    <div class="flex justify-end flex-grow items-center w-auto">
+      <a
+        href={TWITTER_LINK}
+        class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4"
+      >
         <Icon class="h-8 w-8 mr-2" pack="mdi" name="twitter" />
       </a>
-      <a href={GITHUB_LINK} class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4">
+      <a
+        href={GITHUB_LINK}
+        class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4"
+      >
         <Icon class="h-8 w-8 mr-2" pack="mdi" name="github" />
       </a>
-      <a href={LINKED_LINK}  class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white">
+      <a
+        href={LINKED_LINK}
+        class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white"
+      >
         <Icon class="h-8 w-8 mr-2" pack="mdi" name="linkedin" />
       </a>
     </div>
   </nav>
   {/* INTRODUCTION */}
-  {url === "/" ? (<div class="md:flex justify-center mx-auto max-w-4xl px-4 md:px-6 lg:px-8 py-12 min-h-full">
-    <div class="p-2 my-auto rounded-full">
-        <img class="rounded-full w-auto aspect-square mx-auto grayscale"
-            src={ProfileImage.src}>
-    </div>
-    <div class="p-8 my-auto gap-2 flex flex-col">
-      <h1 class="text-black-50 text-5xl text-center">{SITE_WELCOME}</h1>
-      <p class=" text-black-50 text-lg text-center">{SITE_INTRODUCTION}</p>
-    </div>
-</div>) : null}
-  
+  {
+    url === "/" ? (
+      <div class="md:flex justify-center mx-auto max-w-4xl px-4 md:px-6 lg:px-8 py-12 min-h-full">
+        <div class="p-2 my-auto rounded-full">
+          <img
+            class="rounded-full w-auto aspect-square mx-auto grayscale"
+            src={ProfileImage.src}
+          />
+        </div>
+        <div class="p-8 my-auto gap-2 flex flex-col">
+          <h1 class="text-black-50 text-5xl text-center">{SITE_WELCOME}</h1>
+          <p class=" text-black-50 text-lg text-center">{SITE_INTRODUCTION}</p>
+        </div>
+      </div>
+    ) : null
+  }
 </header>
