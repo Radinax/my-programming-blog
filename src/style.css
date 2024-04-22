@@ -21,17 +21,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --astro-code-color-text: theme(colors.dark.text);
-    --astro-code-color-background: theme(colors.dark.background);
-    --astro-code-token-constant: theme(colors.dark.text);
-    --astro-code-token-string: theme(colors.dark.text);
-    --astro-code-token-comment: theme(colors.dark.text);
-    --astro-code-token-keyword: theme(colors.dark.text);
-    --astro-code-token-parameter: theme(colors.dark.text);
-    --astro-code-token-function: theme(colors.dark.text);
-    --astro-code-token-string-expression: theme(colors.dark.text);
-    --astro-code-token-punctuation: theme(colors.dark.text);
-    --astro-code-token-link: theme(colors.dark.text);
+    --astro-code-color-text: theme(colors.blue.200);
+    --astro-code-color-background: theme(colors.light.primary);
+    --astro-code-token-constant: theme(colors.blue.100);
+    --astro-code-token-string: theme(colors.orange.500);
+    --astro-code-token-comment: theme(colors.green.600);
+    --astro-code-token-keyword: theme(colors.blue.400);
+    --astro-code-token-parameter: theme(colors.yellow.600);
+    --astro-code-token-function: theme(colors.purple.400);
+    --astro-code-token-string-expression: theme(colors.orange.400);
+    --astro-code-token-punctuation: theme(colors.blue.200);
+    --astro-code-token-link: theme(colors.blue.200);
   }
 }
 
