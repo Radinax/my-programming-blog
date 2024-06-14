@@ -18,4 +18,4 @@ See you on the next post.
 
 Sincerely,
 
-\*\*Eng. Adrian Beria.
+**Eng. Adrian Beria.**
