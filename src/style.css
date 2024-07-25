@@ -24,8 +24,11 @@
   content: "";
 }
 .prose code:not(pre code) {
-  background: theme(colors.purple.100);
+  background: theme(colors.gray.200);
+  color: theme(colors.red.600);
   font-size: 1rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 @media (prefers-color-scheme: dark) {
