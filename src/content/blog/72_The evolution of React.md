@@ -1,7 +1,7 @@
 ---
 title: "The evolution of React JS: React Router V7 and SSR done right"
 description: "We're gonna give a summary of React Conference by Ryan Florence about React Router V7 and how it implements SSR, SSG and CSR all in one!"
-category: ["typescript", "reactjs"]
+category: ["typescript", "react"]
 pubDate: "2024-07-26"
 published: true
 ---
