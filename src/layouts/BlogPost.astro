@@ -7,9 +7,9 @@ const { title, description } = Astro.props;
 
 <BaseLayout title={`${SITE_TITLE} | ${title}`} description={description}>
   <article
-    class="prose max-w-none prose-code:text-lg text-md sm:text-xl text-gray-800 scroller"
+    class="prose max-w-none prose-code:text-lg text-md sm:text-xl text-gray-700 scroller"
   >
-    <h1 class="text-light-primary text-xl sm:text-2xl">
+    <h1>
       {title}
     </h1>
     <slot />

@@ -3,6 +3,7 @@ import { defineCollection, z } from "astro:content";
 export const CATEGORIES = [
   "oop",
   "typescript",
+  "javascript",
   "react",
   "redux",
   "remix",

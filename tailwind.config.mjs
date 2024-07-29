@@ -6,8 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [...defaultTheme.fontFamily.sans],
-        mono: ["Source Code Pro Variable", ...defaultTheme.fontFamily.mono],
+        sans: ["iransans", "Sans-serif"],
       },
       backgroundImage: {
         // from gray-nurse-50 to white
