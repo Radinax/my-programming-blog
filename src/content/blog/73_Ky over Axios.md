@@ -756,6 +756,56 @@ While this approach works, it's less type-safe than Ky's built-in generics. Ther
 
 In conclusion, while Axios can be adapted to use generic types, Ky's direct support for generics often provides a more elegant and type-safe solution.
 
+# How to use Ky in modern projects
+
+Finally let's add a snippet you can use for your work or personal projects:
+
+```javascript
+import ky from "../lib/ky";
+
+const UserService = {
+  registerUser: async (userData) => {
+    const response = await ky.post("register", { json: userData }).json();
+    return response;
+  },
+
+  loginUser: async (credentials) => {
+    return await ky.post("login", { json: credentials }).json()
+  }
+
+  updateProfile: async (userId, profileData) => {
+    const response = await ky.put(`${userId}`, { json: profileData }).json()
+    return response
+  }
+};
+```
+
+Where `ky` is:
+
+```javascript
+import kyStandard from "ky";
+
+// Define API_URL once and ky will take care of the rest
+const API_URL = process.env.VITE_API_URL;
+
+// This will add authentication token to the Authorization header
+// Everytime a request is sent with the ky instance
+const prepareRequestsWithAuth = (request: Request) => {
+  // If the auth is based on JWT
+  const authToken = localStorage.getItem("auth-token");
+
+  request.headers.set("Authorization", `Bearer ${authToken}`);
+};
+
+// Export instance with default base URL, hooks and headers
+export default kyStandard.create({
+  prefixUrl: API_URL,
+  hooks: {
+    beforeRequest: [prepareRequestsWithAuth],
+  },
+});
+```
+
 # Conclusion
 
 We have learned about the evolution of HTTP requests, from XHR to Fetch then tools built upon them like Axios and Ky respectively. The main benefit of using Ky is that its based on FETCH API which is less buggy and is the standard of web development today while also offering retries and a cleaner API.
