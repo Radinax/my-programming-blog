@@ -36,7 +36,7 @@ const { slug, title, dateTime, categories, description } = Astro.props;
     class="flex flex-col gap-1 md:flex-row md:items-center gap-x-4 text-xs mt-1"
   >
     {/* Article Header Date */}
-    <time datetime={getDateTime(dateTime)} class="text-light-primary">
+    <time datetime={getDateTime(dateTime)} class="text-light-primary min-w-fit">
       {
         dateTime.toLocaleString("en", {
           dateStyle: "long",
