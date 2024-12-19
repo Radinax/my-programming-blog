@@ -27,7 +27,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply text-light-primary font-mono leading-none font-medium;
+  @apply text-light-background leading-none font-semibold;
 }
 
 .prose code:not(pre code)::before,

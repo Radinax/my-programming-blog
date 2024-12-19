@@ -1,17 +1,27 @@
 ---
+import FormattedDate from "../components/FormattedDate.astro";
 import { SITE_TITLE } from "../consts";
 import BaseLayout from "./BaseLayout.astro";
 
-const { title, description } = Astro.props;
+const { title, description, category, pubDate } = Astro.props;
+const uppercaseCategory = category.map(
+  (category: string) => category.charAt(0).toUpperCase() + category.slice(1)
+);
 ---
 
 <BaseLayout title={`${SITE_TITLE} | ${title}`} description={description}>
   <article
-    class="prose max-w-none prose-code:text-lg text-md sm:text-xl text-gray-700 scroller"
+    class="max-w-fit prose prose-h1:font-semibold prose-code:text-md text-md sm:text-md text-gray-700 scroller"
   >
-    <h1>
+    <h1 class="font-bold text-center mb-4">
       {title}
     </h1>
+    <div class="flex flex-row gap-4 text-md justify-center">
+      <FormattedDate date={pubDate} />—
+      <div class="flex flex-row">
+        {uppercaseCategory.join(", ")}
+      </div>
+    </div>
     <slot />
   </article>
 </BaseLayout>

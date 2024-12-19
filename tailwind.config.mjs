@@ -28,8 +28,8 @@ export default {
         },
         light: {
           // gray-nurse-800
-          primary: "#1c1c1c",
-          secondary: "#007ebd",
+          primary: "#1f2937",
+          secondary: "#76c2af",
           accent: "#f8860d",
           neutral: "#1f2937",
           "base-100": "#ffffff",
@@ -37,8 +37,8 @@ export default {
           success: "#36d399",
           warning: "#fbbd23",
           error: "#f87272",
-          text: "#1f2937",
-          background: "#ffffff",
+          text: "#cbd5e0",
+          background: "#1A202C",
           // gray-nurse-800
           "select-text": "#333c35",
           "select-bg": "#9caca0",

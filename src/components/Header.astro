@@ -12,7 +12,7 @@ import { Icon } from "astro-icon";
 const url = Astro.url.pathname;
 ---
 
-<header class="bg-black-950">
+<header class="bg-light-background">
   {/* NAVBAR */}
   <nav
     class="flex items-center justify-between w-full flex-wrap p-6 mx-auto max-w-4xl min-h-full"
@@ -54,13 +54,17 @@ const url = Astro.url.pathname;
       <div class="md:flex justify-center mx-auto max-w-4xl px-4 md:px-6 lg:px-8 py-12 min-h-full">
         <div class="p-2 my-auto rounded-full">
           <img
-            class="rounded-full w-auto aspect-square mx-auto grayscale"
+            class="rounded-full w-8/12 sm:w-10/12 aspect-square mx-auto grayscale"
             src={ProfileImage.src}
           />
         </div>
         <div class="p-8 my-auto gap-2 flex flex-col">
-          <h1 class="text-black-50 text-5xl text-center">{SITE_WELCOME}</h1>
-          <p class=" text-black-50 text-lg text-center">{SITE_INTRODUCTION}</p>
+          <h1 class="text-slate-50 text-4xl text-center">{SITE_WELCOME}</h1>
+          <p class="text-light-text text-lg text-center">{SITE_INTRODUCTION}</p>
+          <p class="text-light-text text-lg text-center">
+            {" "}
+            I ❤️ React Js and TypeScript
+          </p>
         </div>
       </div>
     ) : null

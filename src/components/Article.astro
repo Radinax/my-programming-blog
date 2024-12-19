@@ -1,4 +1,5 @@
 ---
+import FormattedDate from "./FormattedDate.astro";
 import Tag from "./Tag.astro";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
   description: string;
 }
 
-function getDateTime(date: Date) {
+export function getDateTime(date: Date) {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const day = date.getDate().toString().padStart(2, "0");
@@ -36,13 +37,7 @@ const { slug, title, dateTime, categories, description } = Astro.props;
     class="flex flex-col gap-1 md:flex-row md:items-center gap-x-4 text-xs mt-1"
   >
     {/* Article Header Date */}
-    <time datetime={getDateTime(dateTime)} class="text-light-primary min-w-fit">
-      {
-        dateTime.toLocaleString("en", {
-          dateStyle: "long",
-        })
-      }
-    </time>
+    <FormattedDate date={dateTime} />
     {/* Article Header Tags */}
     <div class="flex gap-2 flex-wrap">
       {categories.map((c) => <Tag href={`/tags/${c}`}>{c}</Tag>)}
