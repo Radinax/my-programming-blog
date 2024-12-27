@@ -35,9 +35,11 @@ h3 {
   content: "";
 }
 .prose code:not(pre code) {
-  background: theme(colors.gray.200);
-  color: theme(colors.red.500);
-  font-size: 1.2rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  background: theme(colors.slate.900);
+  color: theme(colors.purple.300);
+  font-size: 1rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  padding-top: 0rem;
+  padding-bottom: 0.1rem;
 }
