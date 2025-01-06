@@ -7,7 +7,7 @@
 */
 :root {
   --astro-code-color-text: theme(colors.blue.200);
-  --astro-code-color-background: theme(colors.gray.900);
+  --astro-code-color-background: theme(colors.gray.800);
   --astro-code-token-constant: theme(colors.blue.100);
   --astro-code-token-string: theme(colors.blue.300);
   --astro-code-token-comment: theme(colors.green.600);
@@ -35,8 +35,8 @@ h3 {
   content: "";
 }
 .prose code:not(pre code) {
-  background: theme(colors.slate.900);
-  color: theme(colors.purple.300);
+  background: theme(colors.slate.100);
+  color: theme(colors.purple.500);
   font-size: 1rem;
   padding-left: 0.4rem;
   padding-right: 0.4rem;

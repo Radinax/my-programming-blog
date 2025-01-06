@@ -1,6 +1,11 @@
 import { defineCollection, z } from "astro:content";
 
 export const CATEGORIES = [
+  "data",
+  "python",
+  "ML",
+  "R",
+  "roadmap",
   "oop",
   "typescript",
   "javascript",

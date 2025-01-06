@@ -2,17 +2,17 @@
 title: ""
 description: ""
 category: ["typescript"]
-pubDate: "2023-10-26"
+pubDate: "2024-12-29"
 published: false
 ---
 
 ## Table of contents
 
-## Introduction
+# Introduction
 
-## Name of content
+# Name of content
 
-## Conclusion
+# Conclusion
 
 See you on the next post.
 
