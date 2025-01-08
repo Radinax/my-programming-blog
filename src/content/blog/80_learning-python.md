@@ -1,5 +1,5 @@
 ---
-title: "Learning Python"
+title: "Learning Python: Classes"
 description: "This article we will go through about Python, learning how to create a class"
 category: ["python"]
 pubDate: "2024-12-29"
