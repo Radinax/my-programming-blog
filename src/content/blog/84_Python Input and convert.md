@@ -1,7 +1,7 @@
 ---
 title: "Learning Python: Input and Converters"
 description: "This article we will go through learning the input and converters in Python. Simple concepts overall, but we will focus on where to use them and give some real world examples"
-category: ["Python"]
+category: ["python"]
 pubDate: "2025-01-10"
 published: true
 ---
@@ -12,7 +12,7 @@ published: true
 
 The `input()` function is a fundamental part of Python, allowing developers to capture data from users. However, since `input()` returns all data as strings, Python provides several built-in functions to convert this input into other data types, such as integers and floats. In this article, we will explore how to use the `input()` function and how to convert user input into different data types using converters like `int()` and `float()`. We will also delve into more complex, real-life examples.
 
-# Using the `input()` Function
+# Using the input() Function
 
 The `input()` function is used to take user input. It reads a line from the input (usually from the user), converts it to a string, and returns this string. The function can optionally display a prompt to the user.
 
