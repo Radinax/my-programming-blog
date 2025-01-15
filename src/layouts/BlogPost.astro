@@ -13,10 +13,10 @@ const uppercaseCategory = category.map(
   <article
     class="max-w-fit prose prose-h1:font-semibold prose-code:text-md text-md sm:text-md text-gray-700 scroller"
   >
-    <h1 class="font-bold text-center mb-4">
+    <h1 class="font-bold text-pretty mb-4">
       {title}
     </h1>
-    <div class="flex flex-row gap-4 text-md justify-center">
+    <div class="flex flex-row gap-4 text-md">
       <FormattedDate date={pubDate} />—
       <div class="flex flex-row">
         {uppercaseCategory.join(", ")}
