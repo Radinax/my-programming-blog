@@ -11,9 +11,9 @@ const uppercaseCategory = category.map(
 
 <BaseLayout title={`${SITE_TITLE} | ${title}`} description={description}>
   <article
-    class="max-w-fit prose prose-h1:font-semibold prose-code:text-md text-md sm:text-md text-gray-700 scroller"
+    class="max-w-fit prose prose-hr:my-8 prose-h1:font-semibold prose-h1:mb-0 prose-code:text-md text-md sm:text-md text-gray-700 scroller"
   >
-    <h1 class="font-bold text-pretty mb-4">
+    <h1 class="font-bold text-pretty underline underline-offset-auto">
       {title}
     </h1>
     <div class="flex flex-row gap-4 text-md">
@@ -25,9 +25,3 @@ const uppercaseCategory = category.map(
     <slot />
   </article>
 </BaseLayout>
-
-<style>
-  h1 {
-    @apply underline underline-offset-8;
-  }
-</style>
