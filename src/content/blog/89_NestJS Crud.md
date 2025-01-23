@@ -1,7 +1,7 @@
 ---
 title: "Nest JS Hands On"
 description: "Checking out Nest JS as it was required in a project"
-category: ["typescript"]
+category: ["typescript", "backend", "node"]
 pubDate: "2025-01-21"
 published: true
 ---
@@ -16,6 +16,8 @@ Let's build a CRUD API with NestJS and TypeScript using **SQLite** without Drizz
 
 Docs: https://docs.nestjs.com/
 Repo: https://github.com/Radinax/nestjs-sqlite-crud
+
+We will leave validations for another article.
 
 ---
 
@@ -317,6 +319,103 @@ src/
 ├── sqlite.db
 └── main.ts
 ```
+
+# Summary
+
+Let's make a summary with all we learned today.
+
+## To Setup a NestJS Project
+
+1. **Install NestJS CLI**:
+   ```bash
+   npm i -g @nestjs/cli
+   ```
+2. **Create a New Project**:
+   ```bash
+   nest new nestjs-sqlite-crud
+   cd nestjs-sqlite-crud
+   ```
+3. **Install Dependencies**:
+   Install `sqlite3` for database interaction and `class-validator`/`class-transformer` for validations:
+   ```bash
+   npm install sqlite3 class-validator class-transformer
+   ```
+
+---
+
+## Set Up SQLite Database
+
+1. **Create a Database File**:
+   Use a tool like [DB Browser for SQLite](https://sqlitebrowser.org/) to create a `sqlite.db` file.
+2. **Create a `users` Table**:
+   Run the following SQL command to create a table:
+   ```sql
+   CREATE TABLE users (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     name TEXT NOT NULL,
+     age INTEGER NOT NULL
+   );
+   ```
+
+---
+
+## Create a Database Service
+
+1. **Generate a Database Service**:
+   ```bash
+   nest generate service database
+   ```
+2. **Implement Database Operations**:
+   Use the `sqlite3` package to create methods for querying and running SQL commands. This service will handle all database interactions.
+
+---
+
+## Implement CRUD Operations
+
+1. **Generate a `users` Module**:
+   ```bash
+   nest generate module users
+   nest generate service users
+   nest generate controller users
+   ```
+2. **Create CRUD Methods**:
+   In the `users.service.ts` file, implement methods for:
+   - Fetching all users (`findAll`)
+   - Fetching a single user by ID (`findOne`)
+   - Creating a new user (`create`)
+   - Updating a user by ID (`update`)
+   - Deleting a user by ID (`delete`)
+3. **Expose CRUD Endpoints**:
+   In the `users.controller.ts` file, create routes for each CRUD operation.
+
+---
+
+## Add Validations (next article)
+
+1. **Enable Global Validation**:
+   In `main.ts`, add the `ValidationPipe` to enforce validation rules globally.
+2. **Create DTOs (Data Transfer Objects)**:
+   Define DTOs for creating and updating users. Use decorators like `@IsString`, `@IsInt`, `@Min`, and `@Max` to enforce validation rules.
+3. **Apply DTOs in the Controller**:
+   Use the DTOs in the controller methods to validate incoming requests.
+
+---
+
+## Test the API
+
+1. **Start the Application**:
+   ```bash
+   npm run start:dev
+   ```
+2. **Test Endpoints**:
+   Use tools like Postman or `curl` to test the CRUD endpoints:
+   - `GET /users` - Fetch all users.
+   - `GET /users/:id` - Fetch a user by ID.
+   - `POST /users` - Create a new user.
+   - `PUT /users/:id` - Update a user by ID.
+   - `DELETE /users/:id` - Delete a user by ID.
+
+---
 
 # Conclusion
 
