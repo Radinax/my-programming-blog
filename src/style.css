@@ -36,7 +36,7 @@ h3 {
 }
 .prose code:not(pre code) {
   background: theme(colors.slate.100);
-  color: theme(colors.purple.500);
+  color: theme(colors.red.700);
   font-size: 1rem;
   padding-left: 0.4rem;
   padding-right: 0.4rem;
