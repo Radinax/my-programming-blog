@@ -1,6 +1,7 @@
 import { defineCollection, z } from "astro:content";
 
 export const CATEGORIES = [
+  "leetcode",
   "data",
   "python",
   "ML",
@@ -39,6 +40,7 @@ export const CATEGORIES = [
   "sequelize",
   "tailwind",
   "utilities",
+  "management",
 ] as const;
 
 const blog = defineCollection({
