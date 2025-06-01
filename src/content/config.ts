@@ -1,6 +1,7 @@
 import { defineCollection, z } from "astro:content";
 
 export const CATEGORIES = [
+  "ai",
   "leetcode",
   "data",
   "python",
