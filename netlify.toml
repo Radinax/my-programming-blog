@@ -1,15 +1,18 @@
 [build]
-  command = "npm run build"
+  command = "npx playwright install --with-deps && npm run build"
   publish = "dist"
 
-[functions]
-  nodeVersion = "18"
-
-[[plugins]]
-  package = "@netlify/plugin-cache"
-
-[[plugins]]
-  package = "@netlify/plugin-cache-playwright"
+# ✅ Correct way to set Node.js version
+node_version = "18"
 
 [build.environment]
   PLAYWRIGHT_BROWSERS_PATH = "0"
+
+# Optional: Cache plugins (though not officially supported)
+[[plugins]]
+  package = "@netlify/plugin-cache"
+
+# Note: @netlify/plugin-cache-playwright does not exist officially
+# So this line may cause issues — remove if not needed
+[[plugins]]
+  package = "@netlify/plugin-cache-playwright"
