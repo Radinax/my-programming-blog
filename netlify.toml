@@ -5,12 +5,5 @@
   publish = "dist"
 
 [build.environment]
-  # Force Playwright to install browsers into the project
   PLAYWRIGHT_BROWSERS_PATH = "0"
-  # Use Node 18
   NODE_VERSION = "18"
-
-# Optional: cache Playwright browser binaries
-[[plugins]]
-  [plugins.inputs]
-  paths = ["node_modules/.cache/ms-playwright"]
