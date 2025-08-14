@@ -1,9 +1,16 @@
-node_version = "18"
+# netlify.toml
 
 [build]
   command = "npx playwright install --with-deps && npm run build"
   publish = "dist"
 
 [build.environment]
+  # Force Playwright to install browsers into the project
   PLAYWRIGHT_BROWSERS_PATH = "0"
-  CI = "true"
+  # Use Node 18
+  NODE_VERSION = "18"
+
+# Optional: cache Playwright browser binaries
+[[plugins]]
+  [plugins.inputs]
+  paths = ["node_modules/.cache/ms-playwright"]
