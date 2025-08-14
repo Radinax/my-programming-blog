@@ -3,16 +3,22 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import expressiveCode from "astro-expressive-code";
-import remarkMermaid from "remark-mermaidjs";
-
 import tailwind from "@astrojs/tailwind";
 
-// https://astro.build/config
+// Import rehype plugins
+import rehypeMermaid from "rehype-mermaid";
+
 export default defineConfig({
   site: "https://adrian-beria-blog.netlify.app/",
   markdown: {
-    remarkPlugins: [remarkToc, remarkMermaid],
+    remarkPlugins: [remarkToc],
+    rehypePlugins: [rehypeMermaid],
     shikiConfig: { theme: "css-variables" },
   },
-  integrations: [expressiveCode(), sitemap(), tailwind()],
+  integrations: [
+    expressiveCode(),
+    mdx({ syntaxHighlight: "shiki" }),
+    sitemap(),
+    tailwind(),
+  ],
 });
