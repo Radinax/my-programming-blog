@@ -14,10 +14,5 @@ export default defineConfig({
     remarkPlugins: [remarkToc, remarkMermaid],
     shikiConfig: { theme: "css-variables" },
   },
-  integrations: [
-    expressiveCode(),
-    mdx({ syntaxHighlight: "shiki" }),
-    sitemap(),
-    tailwind(),
-  ],
+  integrations: [expressiveCode(), sitemap(), tailwind()],
 });
