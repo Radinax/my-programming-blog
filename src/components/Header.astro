@@ -7,7 +7,7 @@ import {
   LINKED_LINK,
 } from "../consts";
 import ProfileImage from "../../public/profile-image.jpg";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 const url = Astro.url.pathname;
 ---
@@ -24,7 +24,7 @@ const url = Astro.url.pathname;
         href="/"
         class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4"
       >
-        <Icon class="h-8 w-8 mr-2" pack="mdi" name="home" />
+        <Icon class="h-8 w-8 mr-2" name="mdi:home" />
       </a>
     </div>
     <div class="flex justify-end flex-grow items-center w-auto">
@@ -32,35 +32,42 @@ const url = Astro.url.pathname;
         href={TWITTER_LINK}
         class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4"
       >
-        <Icon class="h-8 w-8 mr-2" pack="mdi" name="twitter" />
+        <Icon class="h-8 w-8 mr-2" name="mdi:twitter" />
       </a>
       <a
         href={GITHUB_LINK}
         class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white mr-4"
       >
-        <Icon class="h-8 w-8 mr-2" pack="mdi" name="github" />
+        <Icon class="h-8 w-8 mr-2" name="mdi:github" />
       </a>
       <a
         href={LINKED_LINK}
         class="block mt-4 lg:inline-block lg:mt-0 text-black-100 hover:text-white"
       >
-        <Icon class="h-8 w-8 mr-2" pack="mdi" name="linkedin" />
+        <Icon class="h-8 w-8 mr-2" name="mdi:linkedin" />
       </a>
     </div>
   </nav>
   {/* INTRODUCTION */}
   {
     url === "/" ? (
-      <div class="md:flex justify-center mx-auto max-w-4xl px-4 md:px-6 lg:px-8 py-12 min-h-full">
-        <div class="p-2 my-auto rounded-full">
+      <div class="mx-auto max-w-4xl px-4 md:px-6 lg:px-8 pb-12 pt-4 sm:pt-8">
+        <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left">
           <img
-            class="rounded-full w-8/12 sm:w-10/12 aspect-square mx-auto grayscale"
+            class="size-28 shrink-0 rounded-full object-cover ring-2 ring-white/15 grayscale transition duration-300 hover:grayscale-0 sm:size-32"
             src={ProfileImage.src}
+            alt="Adrian Beria"
+            width="128"
+            height="128"
           />
-        </div>
-        <div class="p-8 my-auto gap-2 flex flex-col">
-          <h1 class="text-slate-50 text-4xl">{SITE_WELCOME}</h1>
-          <p class="text-light-text text-lg">{SITE_INTRODUCTION}</p>
+          <div class="flex flex-col gap-3">
+            <h1 class="text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl">
+              {SITE_WELCOME}
+            </h1>
+            <p class="max-w-2xl text-base leading-relaxed text-light-text sm:text-lg">
+              {SITE_INTRODUCTION}
+            </p>
+          </div>
         </div>
       </div>
     ) : null

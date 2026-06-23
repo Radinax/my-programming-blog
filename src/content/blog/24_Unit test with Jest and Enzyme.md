@@ -532,7 +532,7 @@ export function changeAuth(isLoggedIn) {
 
 Testing an action, we create a folder `src/actions/__test_/` and we add the `index.test.js` file to it:
 
-```react
+```jsx
 import { saveComment } from 'actions';
 import { SAVE_COMMENT } from 'actions/types';
 

@@ -827,7 +827,7 @@ Do `npm run build`, after that inside `package.json`:
 
 Create `.gitignore`:
 
-```textile
+```text
 dist
 node_modules
 .env
@@ -835,7 +835,7 @@ node_modules
 
 Now `git init` and `.env`:
 
-```textile
+```text
 DB_PASSWORD=password // use yours!
 DB_USERNAME=root
 DB_HOST=localhost

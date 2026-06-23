@@ -9,28 +9,316 @@ const sortedPosts = [...posts].sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
-/*
-function getDateTime(date: Date) {
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-*/
+// Only the categories that actually have published posts, alphabetized.
+const usedCategories = [
+  ...new Set(sortedPosts.flatMap((p) => p.data.category)),
+].sort();
 ---
 
-<BaseLayout title={`${SITE_TITLE} | Home`} description={SITE_DESCRIPTION} '>
-  <div class="flex flex-col gap-12">
+<BaseLayout title={`${SITE_TITLE} | Home`} description={SITE_DESCRIPTION}>
+  {/* ── Controls: free-text search + custom category dropdown ──────────── */}
+  <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+    <div class="relative flex-1">
+      <label for="search" class="sr-only">Search articles</label>
+      <svg
+        class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-light-primary/40"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+      </svg>
+      <input
+        id="search"
+        type="search"
+        placeholder="Search articles…"
+        autocomplete="off"
+        class="w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-light-primary placeholder:text-light-primary/40 transition focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/30"
+      />
+    </div>
+
+    {/* Custom listbox — a native <select> can't style/animate its popup. */}
+    <div id="category-dd" class="relative sm:w-56">
+      <button
+        type="button"
+        id="category-trigger"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        class="flex w-full items-center justify-between gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-left text-light-primary transition hover:border-slate-400 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/30"
+      >
+        <span id="category-label" class="truncate">All categories</span>
+        <svg
+          id="category-chevron"
+          class="size-4 shrink-0 text-light-primary/50 transition-transform duration-200"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+        </svg>
+      </button>
+
+      <ul
+        id="category-panel"
+        role="listbox"
+        aria-label="Filter by category"
+        tabindex="-1"
+        class="invisible absolute z-20 mt-2 max-h-72 w-full origin-top -translate-y-1 scale-95 overflow-auto rounded-xl border border-slate-200 bg-white p-1 opacity-0 shadow-lg ring-1 ring-black/5 transition duration-150 ease-out"
+      >
+        <li
+          role="option"
+          data-value=""
+          tabindex="-1"
+          aria-selected="true"
+          class="dd-option cursor-pointer rounded-md px-3 py-2 text-sm text-light-primary transition hover:bg-slate-100 focus:bg-slate-100 focus:outline-none aria-selected:bg-accent-50 aria-selected:font-semibold aria-selected:text-accent-700"
+        >
+          All categories
+        </li>
+        {
+          usedCategories.map((c) => (
+            <li
+              role="option"
+              data-value={c}
+              tabindex="-1"
+              aria-selected="false"
+              class="dd-option cursor-pointer rounded-md px-3 py-2 text-sm text-light-primary transition hover:bg-slate-100 focus:bg-slate-100 focus:outline-none aria-selected:bg-accent-50 aria-selected:font-semibold aria-selected:text-accent-700"
+            >
+              {c}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <p id="result-count" class="mb-8 text-sm text-light-primary/60" aria-live="polite"></p>
+
+  {/* Every post renders to HTML (SEO-friendly); the script below filters + paginates. */}
+  <ul id="post-list" class="flex flex-col gap-12">
     {
       sortedPosts.map((post) => (
-        <Article
-          slug={post.slug}
-          title={post.data.title}
-          dateTime={post.data.pubDate}
-          categories={post.data.category}
-          description={post.data.description}
-        />
+        <li
+          class="post-item"
+          data-search={`${post.data.title} ${post.data.description} ${post.data.category.join(" ")}`.toLowerCase()}
+          data-categories={post.data.category.join(" ")}
+        >
+          <Article
+            slug={post.id}
+            title={post.data.title}
+            dateTime={post.data.pubDate}
+            categories={post.data.category}
+            description={post.data.description}
+          />
+        </li>
       ))
     }
+  </ul>
+
+  <div id="no-results" class="hidden py-16 text-center text-light-primary/60">
+    <p class="text-lg font-medium">No articles found</p>
+    <p class="mt-1 text-sm">Try a different search or category.</p>
   </div>
+
+  <nav
+    id="pagination"
+    class="mt-12 flex flex-wrap items-center justify-center gap-2"
+    aria-label="Pagination"
+  >
+  </nav>
 </BaseLayout>
+
+<script>
+  const PER_PAGE = 12;
+  let outsideClick: ((e: MouseEvent) => void) | null = null;
+
+  function initBlog() {
+    const list = document.getElementById("post-list");
+    if (!list) return; // only the home page has the list
+
+    const items = Array.from(list.querySelectorAll<HTMLElement>(".post-item"));
+    const search = document.getElementById("search") as HTMLInputElement | null;
+    const pagination = document.getElementById("pagination");
+    const noResults = document.getElementById("no-results");
+    const count = document.getElementById("result-count");
+
+    // Custom category dropdown.
+    const dd = document.getElementById("category-dd");
+    const trigger = document.getElementById("category-trigger");
+    const panel = document.getElementById("category-panel");
+    const chevron = document.getElementById("category-chevron");
+    const label = document.getElementById("category-label");
+    if (!search || !pagination || !noResults || !count || !dd || !trigger || !panel || !chevron || !label)
+      return;
+
+    const options = Array.from(panel.querySelectorAll<HTMLElement>(".dd-option"));
+    let selectedCategory = "";
+    let page = 1;
+    let open = false;
+
+    /* ── filtering + pagination ───────────────────────────────────────── */
+    const filtered = () => {
+      const q = search.value.trim().toLowerCase();
+      return items.filter((el) => {
+        const matchesQuery = !q || (el.dataset.search ?? "").includes(q);
+        const matchesCat =
+          !selectedCategory || (el.dataset.categories ?? "").split(" ").includes(selectedCategory);
+        return matchesQuery && matchesCat;
+      });
+    };
+
+    const pageWindow = (cur: number, pages: number): (number | "…")[] => {
+      if (pages <= 7) return Array.from({ length: pages }, (_, i) => i + 1);
+      const out: (number | "…")[] = [1];
+      const left = Math.max(2, cur - 1);
+      const right = Math.min(pages - 1, cur + 1);
+      if (left > 2) out.push("…");
+      for (let i = left; i <= right; i++) out.push(i);
+      if (right < pages - 1) out.push("…");
+      out.push(pages);
+      return out;
+    };
+
+    const navBtn = (label: string, target: number, disabled: boolean) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = label;
+      b.disabled = disabled;
+      b.className =
+        "min-w-9 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-light-primary transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40";
+      b.addEventListener("click", () => goTo(target));
+      return b;
+    };
+
+    const render = () => {
+      const matches = filtered();
+      const pages = Math.max(1, Math.ceil(matches.length / PER_PAGE));
+      if (page > pages) page = pages;
+
+      for (const el of items) el.style.display = "none";
+      const start = (page - 1) * PER_PAGE;
+      for (const el of matches.slice(start, start + PER_PAGE)) el.style.display = "";
+
+      noResults.classList.toggle("hidden", matches.length !== 0);
+      count.textContent = matches.length
+        ? `${matches.length} article${matches.length === 1 ? "" : "s"}`
+        : "";
+
+      pagination.innerHTML = "";
+      if (pages > 1) {
+        pagination.appendChild(navBtn("‹", page - 1, page === 1));
+        for (const p of pageWindow(page, pages)) {
+          if (p === "…") {
+            const span = document.createElement("span");
+            span.textContent = "…";
+            span.className = "px-1 text-light-primary/40";
+            pagination.appendChild(span);
+          } else {
+            const active = p === page;
+            const b = document.createElement("button");
+            b.type = "button";
+            b.textContent = String(p);
+            b.className = active
+              ? "min-w-9 rounded-md bg-accent-600 px-3 py-1.5 text-sm font-medium text-white"
+              : "min-w-9 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-light-primary transition hover:bg-slate-100";
+            if (active) b.setAttribute("aria-current", "page");
+            b.addEventListener("click", () => goTo(p));
+            pagination.appendChild(b);
+          }
+        }
+        pagination.appendChild(navBtn("›", page + 1, page === pages));
+      }
+    };
+
+    const goTo = (p: number) => {
+      page = Math.max(1, p);
+      render();
+      list.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    /* ── dropdown behavior ────────────────────────────────────────────── */
+    const setOpen = (v: boolean) => {
+      open = v;
+      trigger.setAttribute("aria-expanded", String(v));
+      chevron.classList.toggle("rotate-180", v);
+      panel.classList.toggle("invisible", !v);
+      panel.classList.toggle("opacity-0", !v);
+      panel.classList.toggle("-translate-y-1", !v);
+      panel.classList.toggle("scale-95", !v);
+      panel.classList.toggle("opacity-100", v);
+      panel.classList.toggle("translate-y-0", v);
+      panel.classList.toggle("scale-100", v);
+      if (v) (options.find((o) => o.getAttribute("aria-selected") === "true") ?? options[0])?.focus();
+    };
+
+    const choose = (opt: HTMLElement) => {
+      selectedCategory = opt.dataset.value ?? "";
+      label.textContent = opt.textContent?.trim() ?? "All categories";
+      for (const o of options) o.setAttribute("aria-selected", String(o === opt));
+      setOpen(false);
+      trigger.focus();
+      page = 1;
+      render();
+    };
+
+    trigger.addEventListener("click", () => setOpen(!open));
+    trigger.addEventListener("keydown", (e) => {
+      if (["ArrowDown", "ArrowUp", "Enter", " "].includes(e.key)) {
+        e.preventDefault();
+        setOpen(true);
+      }
+    });
+    for (const o of options) o.addEventListener("click", () => choose(o));
+    panel.addEventListener("keydown", (e) => {
+      const idx = options.indexOf(document.activeElement as HTMLElement);
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+        trigger.focus();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        (options[Math.min(options.length - 1, idx + 1)] ?? options[0])?.focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        (options[Math.max(0, idx - 1)] ?? options[0])?.focus();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        options[0]?.focus();
+      } else if (e.key === "End") {
+        e.preventDefault();
+        options[options.length - 1]?.focus();
+      } else if ((e.key === "Enter" || e.key === " ") && idx >= 0) {
+        e.preventDefault();
+        choose(options[idx]!);
+      }
+    });
+
+    // Close on outside click. Re-bind safely across View-Transitions navigations
+    // (document-level listeners would otherwise stack up).
+    if (outsideClick) document.removeEventListener("click", outsideClick);
+    outsideClick = (e: MouseEvent) => {
+      if (open && !dd.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("click", outsideClick);
+
+    /* ── wire search + first paint ────────────────────────────────────── */
+    const onSearch = () => {
+      page = 1;
+      render();
+    };
+    search.addEventListener("input", onSearch);
+
+    render();
+  }
+
+  // Run on first load AND after every client-side (View Transitions) navigation.
+  document.addEventListener("astro:page-load", initBlog);
+</script>

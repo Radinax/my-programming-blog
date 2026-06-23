@@ -1,13 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Keep the existing JS theme (custom colors, fontFamily) — v4 loads it via @config. */
+@config "../tailwind.config.mjs";
+
+/* In v4 the typography plugin is loaded from CSS, not the config's plugins array. */
+@plugin "@tailwindcss/typography";
 
 /*
   * This are the colors for the code snippets
 */
 :root {
-  --astro-code-color-text: theme(colors.blue.200);
-  --astro-code-color-background: theme(colors.gray.800);
+  /* Newer Shiki's css-variables theme renamed these from
+     --astro-code-color-{text,background} to --astro-code-{foreground,background}. */
+  --astro-code-foreground: theme(colors.blue.200);
+  --astro-code-background: theme(colors.gray.800);
   --astro-code-token-constant: theme(colors.blue.100);
   --astro-code-token-string: theme(colors.blue.300);
   --astro-code-token-comment: theme(colors.green.600);
@@ -24,10 +30,16 @@ body {
   scrollbar-width: thin;
 }
 
-h1,
-h2,
-h3 {
-  @apply text-light-background leading-none font-semibold;
+/* Must live in @layer base: in v4's native cascade, an UNLAYERED rule beats every
+   @layer (incl. utilities) regardless of specificity, so an unlayered h1/h2/h3 color
+   would override per-element utilities like `text-slate-50`. In `base` it sits below
+   utilities, so those utilities win again (the v3 behavior). */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    @apply text-light-background leading-none font-semibold;
+  }
 }
 
 .prose code:not(pre code)::before,

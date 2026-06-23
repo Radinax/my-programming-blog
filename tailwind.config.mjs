@@ -1,18 +1,15 @@
-import defaultTheme from "tailwindcss/defaultTheme";
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["iransans", "Sans-serif"],
-      },
-      backgroundImage: {
-        // from gray-nurse-50 to white
-        primary: "linear-gradient(360deg, #f6f7f6, #ffffff)",
+        // Inter is shipped via @fontsource-variable/inter (imported in BaseHead);
+        // make it the default sans so it actually applies (was a non-existent "iransans").
+        sans: ["Inter Variable", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
+        // Neutral grayscale ramp (used for the header nav links, borders, etc.).
         black: {
           50: "#f6f6f6",
           100: "#e7e7e7",
@@ -26,39 +23,28 @@ export default {
           900: "#3d3d3d",
           950: "#1c1c1c",
         },
+        // Brand base: dark slate text + the navy header surface + muted-on-dark text.
         light: {
-          // gray-nurse-800
-          primary: "#1f2937",
-          secondary: "#76c2af",
-          accent: "#f8860d",
-          neutral: "#1f2937",
-          "base-100": "#ffffff",
-          info: "#3abff8",
-          success: "#36d399",
-          warning: "#fbbd23",
-          error: "#f87272",
-          text: "#cbd5e0",
-          background: "#1A202C",
-          // gray-nurse-800
-          "select-text": "#333c35",
-          "select-bg": "#9caca0",
+          primary: "#1f2937", // main text / dark UI elements
+          background: "#1A202C", // navy header surface + heading color
+          text: "#cbd5e0", // muted text on dark surfaces (the hero intro)
         },
-        dark: {
-          primary: "#6e0b75",
-          secondary: "#007ebd",
-          accent: "#f8860d",
-          neutral: "#1f2937",
-          "base-100": "#ffffff",
-          info: "#3abff8",
-          success: "#36d399",
-          warning: "#fbbd23",
-          error: "#f87272",
-          // gray-nurse-50
-          text: "#f6f7f6",
-          background: "#ffffff",
+        // Accent — indigo. The one intentional color: links, tag pills, active
+        // pagination, focus rings, title hover.
+        accent: {
+          50: "#eef2ff",
+          100: "#e0e7ff",
+          200: "#c7d2fe",
+          300: "#a5b4fc",
+          400: "#818cf8",
+          500: "#6366f1",
+          600: "#4f46e5",
+          700: "#4338ca",
+          800: "#3730a3",
+          900: "#312e81",
+          950: "#1e1b4b",
         },
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
 };

@@ -20,17 +20,17 @@ export function getDateTime(date: Date) {
 const { slug, title, dateTime, categories, description } = Astro.props;
 ---
 
-<article class="flex max-w-xl flex-col items-start justify-between">
+<article class="flex flex-col items-start justify-between">
   {/* Article Header */}
   <div class="group relative">
-    <h1
-      class="mt-3 text-xl font-semibold leading-6 text-pine-dawn-text group-hover:opacity-90"
+    <h2
+      class="mt-3 text-xl font-semibold leading-6 text-light-primary transition group-hover:text-accent-600"
     >
       <a href={`/blog/${slug}`}>
         <span class="absolute inset-0"></span>
         {title}
       </a>
-    </h1>
+    </h2>
   </div>
   {/* Article Body */}
   <div

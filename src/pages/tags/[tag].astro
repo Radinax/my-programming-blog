@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { CATEGORIES } from "../../content/config";
+import { CATEGORIES } from "../../content.config";
 import Article from "../../components/Article.astro";
 import { SITE_TITLE } from "../../consts";
 
@@ -27,7 +27,7 @@ const { posts } = Astro.props;
     {
       posts.map((post: (typeof posts)[0]) => (
         <Article
-          slug={post.slug}
+          slug={post.id}
           title={post.data.title}
           dateTime={post.data.pubDate}
           categories={post.data.category}

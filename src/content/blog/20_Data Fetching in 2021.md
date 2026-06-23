@@ -16,7 +16,7 @@ Javascript has the `fetch()` method that allows us to make HTTP request to a pri
 
 Let's us check the following example:
 
-```react
+```jsx
 import { useState, useEffect } from "react";
 
 const App = () => {
